@@ -8,25 +8,28 @@ export default function UploadFilesButton({ message }: { message: string }) {
 
   const readFiles = (e: React.ChangeEvent<HTMLInputElement>) => {
     const fileList = e.target.files;
-    const filesArray: File[] | null = new Array<File>();
     if (fileList) {
-      for (let i = 0; i < fileList.length; i++) {
-        const file = fileList.item(i);
-        if (file) filesArray.push(file);
-      }
-    }
-    if (filesArray != null) {
+      // ES6
+      const filesArray: File[] = Array.from(fileList);
       addFiles(filesArray);
+
+      // ES5
+      //const filesArray: File[] | null = new Array<File>();
+      // for (let i = 0; i < fileList.length; i++) {
+      //   const file = fileList.item(i);
+      //   if (file) filesArray.push(file);
+      // }
+      //addFiles(filesArray)
     }
   };
 
   return (
-    <div className="py-6">
+    <div className="py-6 flex justify-center items-center">
       <label
         className="flex px-12 py-6 bg-blue-600 rounded-lg cursor-pointer gap-2 items-center text-xl"
         htmlFor="files-selector"
       >
-        {message} <WordIcon />
+        {message} <WordIcon style="size-12" />
       </label>
       <input
         onChange={readFiles}
