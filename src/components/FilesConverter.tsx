@@ -13,6 +13,7 @@ export default function FilesConverter() {
         ))}
       </div>
       <aside className="min-w-[20rem] mx-10">
+        <h1>Word a pdf</h1>
         <ConvertFilesButton message="Convertir a PDF" />
       </aside>
     </section>
